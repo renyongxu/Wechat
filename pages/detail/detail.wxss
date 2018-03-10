@@ -1,0 +1,29 @@
+.rp_banner{
+  width: 100%;
+}
+.rp_banner image{
+  width: 100%;
+  height: 400rpx;
+}
+.rp_start{
+  width: 90%;
+  margin-left: 5%;
+  
+
+}
+.rp_start text{
+  display: inline-block;
+  width: 100%;
+  text-align: left;
+}
+.detail_foot{
+  display:flex;
+  width: 100%;
+}
+.bt_together{
+  width: 50%;
+}
+.bt_direct{
+  
+  width: 50%;
+}

@@ -1,0 +1,46 @@
+
+<swiper class='banner' indicator-dots="{{indicatorDots}}"
+  autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+  <block wx:for="{{imgUrls}}">
+    <swiper-item>
+      <image src="{{item}}" class="slide-image img_banner" />
+    </swiper-item>
+  </block>
+</swiper>
+
+<view class='body'>
+  
+  <view class='list'>
+    <view class='rp_item'>
+      <view class='item_icon'>
+        
+      </view>
+      <view class='item_content'>
+        <view class='item_title'>2018将会经历什么？</view>
+        <view class='item_count'>27894人已解锁</view>
+        <view id='cate' class='item_read' bindtap='toDetail'>免费试读</view>
+      </view>
+    </view>
+    <view class='rp_item'>
+      <view class='item_icon'>
+        
+      </view>
+      <view class='item_content'>
+        <view class='item_title'>2018将会经历什么？</view>
+        <view class='item_count'>27894人已解锁</view>
+        <view class='item_read'>免费试读</view>
+      </view>
+    </view>
+    <view class='rp_item'>
+      <view class='item_icon'>
+        
+      </view>
+      <view class='item_content'>
+        <view class='item_title'>2018将会经历什么？</view>
+        <view class='item_count'>27894人已解锁</view>
+        <view class='item_read'>免费试读</view>
+      </view>
+    </view>
+  </view>
+
+</view>

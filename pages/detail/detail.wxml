@@ -1,0 +1,12 @@
+<view class='container'>
+  <view class='rp_banner'>
+    <image src='http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg'></image>
+  </view>
+  <view class='rp_start'>
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio.
+  </view>
+  <view class='detail_foot'>
+    <button class='bt_together' type='primary'>立即拼团</button>
+    <button class='bt_direct' type='primary'>直接购买</button>
+  </view>
+</view>
