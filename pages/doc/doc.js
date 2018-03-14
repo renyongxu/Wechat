@@ -5,7 +5,10 @@ Page({
    * 页面的初始数据
    */
   data: {
-    
+    genders : ['男','女'],
+    index : 0,
+    time : '12:00',
+    date: '2016-09-01',
   },
 
   /**
@@ -13,7 +16,7 @@ Page({
    */
   onLoad: function (options) {
     wx.setNavigationBarTitle({
-      title: '登录',
+      title: '个人资料',
     })
   },
 
@@ -64,25 +67,5 @@ Page({
    */
   onShareAppMessage: function () {
     
-  },
-
-  getUserInfo: function (e) {
-    console.log(e);
-    if (e.detail.errMsg == 'getUserInfo:ok') {
-      app.globalData.userInfo = e.detail.userInfo;
-      app.globalData.hasUserInfo = true;
-      app.globalData.userlogin = true;
-      console.log('sss');
-      var url = app.globalData.currentUrl;
-      wx.switchTab({
-        url: '../home/home',
-      })
-      console.log('ddd');
-    } else {
-      app.globalData.userInfo = null
-      app.globalData.hasUserInfo = false
-      app.globalData.userlogin = false
-    }
-
   }
 })

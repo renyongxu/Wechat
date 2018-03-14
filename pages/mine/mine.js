@@ -17,11 +17,15 @@ Page({
     var pages = getCurrentPages() //获取加载的页面
     var currentPage = pages[pages.length - 1] //获取当前页面的对象
     var url = currentPage.route;
+    app.globalData.currentUrl = url;
+
+    that.drawCursor();
+
     console.log(url);
     wx.setNavigationBarTitle({
       title: '我的',
     })
-    app.globalData.currentUrl = url;
+    
 
     that.setData({
       userInfo : app.globalData.userInfo,
@@ -140,5 +144,26 @@ Page({
       })
     }
     
+  },
+
+  drawCursor: function () {
+    /* 定义变量 */
+    // 定义三角形顶点 TODO x
+    var center = { x: app.screenWidth / 2, y: 5 };
+    // 定义三角形边长
+    var length = 20;
+    // 左端点
+    var left = { x: center.x - length / 2, y: center.y + length / 2 * Math.sqrt(3) };
+    // 右端点
+    var right = { x: center.x + length / 2, y: center.y + length / 2 * Math.sqrt(3) };
+    // 初始化context
+    const context = wx.createCanvasContext('canvas-cursor');
+    context.moveTo(center.x, center.y);
+    context.lineTo(left.x, left.y);
+    context.lineTo(right.x, right.y);
+    // fill()填充而不是stroke()描边，于是省去手动回归原点，context.lineTo(center.x, center.y);
+    context.setFillStyle('#000');
+    context.fill();
+    context.draw();
   }
 })

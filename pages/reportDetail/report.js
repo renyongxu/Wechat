@@ -12,9 +12,19 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log(options);
+    var that = this;
+    var cate = options.category;
+    var hasDoc = app.globalData.hasDoc;
     wx.setNavigationBarTitle({
-      title: '登录',
+      title: options.name,
     })
+    
+      wx.request({
+        url: 'http://ceceapi_dev.xxwolo.com/report/'+cate,
+      })
+   
+    
   },
 
   /**
@@ -64,25 +74,5 @@ Page({
    */
   onShareAppMessage: function () {
     
-  },
-
-  getUserInfo: function (e) {
-    console.log(e);
-    if (e.detail.errMsg == 'getUserInfo:ok') {
-      app.globalData.userInfo = e.detail.userInfo;
-      app.globalData.hasUserInfo = true;
-      app.globalData.userlogin = true;
-      console.log('sss');
-      var url = app.globalData.currentUrl;
-      wx.switchTab({
-        url: '../home/home',
-      })
-      console.log('ddd');
-    } else {
-      app.globalData.userInfo = null
-      app.globalData.hasUserInfo = false
-      app.globalData.userlogin = false
-    }
-
   }
 })

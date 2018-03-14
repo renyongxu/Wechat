@@ -1,0 +1,38 @@
+<view class='container'>
+  <view class='info'>完善个人资料报告会更准确</view>
+  <view class='doc_box'>
+     <view class='doc_name'>
+      <view class='v_name'>*姓名：</view>
+      <input class='ipt_name' type='text' placeholder='请填写个人姓名' confirm-type='done' placeholder-style="color:#e6e6e6;padding-left:20rpx;"></input>
+    </view>
+    
+    <view class='doc_gender'>
+       <view class='v_name'>*性别：</view> 
+      <picker class='pk_gender' bindchange="bindPickerChange" value="{{index}}" range="{{genders}}">
+        <view class="picker">
+          {{genders[index]}}
+        </view>
+        <image src='../../images/right.png' class='img' mode='aspectFit'></image>
+        
+      </picker>
+      
+    </view>
+    <!--
+    <view class='doc_gender'>
+       <view class='v_name'>*出生时间：</view> 
+      <picker class='pk_gender' mode="time" value="{{time}}" start="00:00" end="23:59" bindchange="bindTimeChange">
+        <view class="picker">
+          {{time}}
+        </view>
+      </picker>
+    </view>
+    <view class='doc_gender'>
+       <view class='v_name'>*出生日期：</view> 
+     <picker class='pk_gender' mode="date" value="{{date}}" start="2015-09-01" end="2017-09-01" bindchange="bindDateChange">
+        <view class="picker">
+          {{date}}
+        </view>
+      </picker>
+    </view> -->
+  </view>
+</view>

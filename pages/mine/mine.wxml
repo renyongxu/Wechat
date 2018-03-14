@@ -6,7 +6,8 @@
         <view class='user_name'>{{userInfo.nickName}}</view>
       </block>
       <block wx:else>
-        <button open-type='getUserInfo' bindgetuserinfo='getUserInfo'>获取头像</button>
+        <image src='../../images/default_head.png' class='user_icon'></image>
+        <!-- <button open-type='getUserInfo' bindgetuserinfo='getUserInfo'>获取头像</button> -->
       </block>
     </view>
   </view>

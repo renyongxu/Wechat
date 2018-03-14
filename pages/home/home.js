@@ -18,7 +18,8 @@ Page({
     duration: 1000,
     hasUserInfo : false,
     userInfo:{},
-    hasUserInfo: false
+    hasUserInfo: false,
+    isBuy : false
   },
   /**
    * 生命周期函数--监听页面加载
@@ -26,6 +27,12 @@ Page({
   onLoad: function (options) {
     var that = this;
     console.log(app);
+    var pages = getCurrentPages() //获取加载的页面
+    var currentPage = pages[pages.length - 1] //获取当前页面的对象
+    var url = currentPage.route;
+    app.globalData.currentUrl = url;
+
+    
     // 获取报告列表
     wx.request({
 
@@ -144,14 +151,37 @@ Page({
   // 前往详情页
   toDetail: function (event) {
     // console.log(event.currentTarget);
+    var that = this;
+    console.log(event.currentTarget)
     var id = event.currentTarget.id;
+    var category = event.currentTarget.dataset.category;
+    var name = event.currentTarget.dataset.name;
     var hasUserInfo = app.globalData.hasUserInfo;
-
+    var isBuy = that.data.isBuy;
+    console.log(isBuy);
     if(hasUserInfo){
-      wx.navigateTo({
+      if(isBuy){
+        wx.navigateTo({
 
-        url: '../detail/detail?id=' + id,
-      })
+          url: '../detail/detail?id=' + id + '&category='+category,
+        })
+      }else{
+        
+        var hasDoc = app.globalData.hasDoc;
+        if(hasDoc){
+          wx.navigateTo({
+
+            url: '../reportDetail/report?id=' + id + '&category=' + category + '&name=' + name,
+          })
+        }else{
+          wx.navigateTo({
+
+            url: '../doc/doc',
+          })
+        }
+        
+      }
+      
     }else{
       wx.showModal({
         title: '提示',

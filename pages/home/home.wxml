@@ -10,7 +10,7 @@
 
   <view class='list'>
     <block wx:for="{{reportList}}" wx:key="key">
-      <view class='rp_item' bindtap='toDetail' id='{{item.id}}'>
+      <view class='rp_item' bindtap='toDetail' id='{{item.id}}' data-category='{{item.category}}' data-name='{{item.name}}'>
         <view class='item_icon'>
 
         </view>

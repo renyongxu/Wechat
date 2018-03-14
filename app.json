@@ -2,6 +2,8 @@
   "pages":[
     "pages/home/home",
     "pages/detail/detail",
+    "pages/reportDetail/report",
+    "pages/doc/doc",
     "pages/mine/mine",
     "pages/myReport/rp",
     "pages/pin/pin",
