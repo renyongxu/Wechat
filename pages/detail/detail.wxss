@@ -6,9 +6,9 @@
   height: 400rpx;
 }
 .rp_start{
-  width: 90%;
-  margin-left: 5%;
-  
+ text-align:left;
+  word-break:break-all;
+  width:95%;
 
 }
 .rp_start text{
@@ -19,11 +19,21 @@
 .detail_foot{
   display:flex;
   width: 100%;
+  position: fixed;
+  bottom: 0;
 }
 .bt_together{
   width: 50%;
+  text-align: center;
+  border-right: solid 0.1rpx #f9cb9c;
+  padding: 20rpx 0;
+  color: #e6e6e6;
 }
 .bt_direct{
   
   width: 50%;
+  text-align: center;
+  padding: 20rpx 0;
+  background: #f9cb9c;
+  color: #fff;
 }

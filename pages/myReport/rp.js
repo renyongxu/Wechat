@@ -4,33 +4,16 @@ Page({
    * 页面的初始数据
    */
   data: {
-    details : [
-      {'fate2018' : 'asdasdasdasd'},
-      {'life' : 'asdwwwqweqweq'}
-    ],
-    detail: 'asdasdasdasdasdaaaaaaaaaaaaaaaaaaaasdasdasdasdasdaaaaaaaaaaaaaaaaaaaasdasdasdasdasdaaaaaaaaaaaaaaaaaaaasdasdasdasdasdaaaaaaaaaaaaaaaaaaaasdasdasdasdasdaaaaaaaaaaaaaaaaaaaasdasdasdasdasdaaaaaaaaaaaaaaaaaaaasdasdasdasdasdaaaaaaaaaaaaaaaaaaaasdasdasdasdasdaaaaaaaaaaaaaaaaaaaasdasdasdasdasdaaaaaaaaaaaaaaaaaaaasdasdasdasdasdaaaaaaaaaaaaaaaaaaaasdasdasdasdasdaaaaaaaaaaaaaaaaaaa'
+    isBuy : 1
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var that = this;
-    wx.request({
-      url: 'http://ceceapi_dev.xxwolo.com/rp/pre/'+options.id,
-      header: {
-        'content-type': 'application/json' // 默认值
-      },
-      success : function(res){
-        wx.setNavigationBarTitle({
-          title: res.data.name,
-        })
-      }
+    wx.setNavigationBarTitle({
+      title: '我的报告',
     })
-    
-
-    console.log(options)
-
   },
 
   /**
@@ -80,5 +63,11 @@ Page({
    */
   onShareAppMessage: function () {
     
+  },
+
+  unLock : function(event){
+    wx.switchTab({
+      url: '../home/home',
+    })
   }
 })

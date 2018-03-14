@@ -1,0 +1,19 @@
+<view class='container'>
+  <block wx:if="{{isBuy == 1}}">
+    <view class='rp_list'>
+      <view class='rp_item'>1</view>
+      <view class='rp_item'>1</view>
+      <view class='rp_item'>1</view>
+      <view class='rp_item'>1</view>
+      <view class='rp_item'>1</view>
+      <view class='rp_item'>1</view>
+    </view>
+  </block>
+  <block wx:else>
+    <view class='rp_lock'>
+      <image src='../../images/lock.png' class='img_icon' mode='aspectFit'></image>
+      <view class='rp_text'>还没有解锁报告</view>
+      <view class='rp_unlock' bindtap='unLock'>我要解锁</view>
+    </view>
+  </block>
+</view>

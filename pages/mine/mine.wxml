@@ -1,0 +1,41 @@
+<view class='container'>
+  <view class='mine_head'>
+    <view class='mine_info'>
+      <block wx:if="{{userlogin}}">
+        <image src='{{userInfo.avatarUrl}}' class='user_icon'></image>
+        <view class='user_name'>{{userInfo.nickName}}</view>
+      </block>
+      <block wx:else>
+        <button open-type='getUserInfo' bindgetuserinfo='getUserInfo'>获取头像</button>
+      </block>
+    </view>
+  </view>
+  <view class='mine_list'>
+     <button class='mine_item' bindtap='getMyReport'>
+      <image src='../../images/order.png' class='item_img' mode='aspectFit'></image>
+      <view class='item_name'>我的报告</view>
+      <image src='../../images/right.png' class='item_img' mode='aspectFit'></image>
+    </button>
+    <button class='mine_item' bindtap='getPinTuan'>
+      <image src='../../images/pin.png' class='item_img' mode='aspectFit'></image>
+      <view class='item_name'>我的团购</view>
+      <image src='../../images/right.png' class='item_img' mode='aspectFit'></image>
+    </button>
+    <button class='mine_item' open-type="share">
+      <image src='../../images/share.png' class='item_img' mode='aspectFit'></image>
+      <view class='item_name'>分享小程序</view>
+      <image src='../../images/right.png' class='item_img' mode='aspectFit'></image>
+    </button>
+    <button class='mine_item'>
+      <image src='../../images/help.png' class='item_img' mode='aspectFit'></image>
+      <view class='item_name'>帮助中心</view>
+      <image src='../../images/right.png' class='item_img' mode='aspectFit'></image>
+    </button>
+    <button class='mine_item'>
+      <image src='../../images/feedback.png' class='item_img' mode='aspectFit'></image>
+      <view class='item_name'>意见反馈</view>
+      <image src='../../images/right.png' class='item_img' mode='aspectFit'></image>
+    </button> 
+
+  </view>
+</view>

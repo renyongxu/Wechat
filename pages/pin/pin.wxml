@@ -1,0 +1,8 @@
+<view class='container'>
+<block wx:if="{{isPin == 1}}">
+  <view>1</view>
+</block>
+<block wx:else>
+  <view>2</view>
+</block>
+</view>

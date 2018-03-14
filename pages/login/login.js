@@ -1,36 +1,20 @@
+const app = getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    details : [
-      {'fate2018' : 'asdasdasdasd'},
-      {'life' : 'asdwwwqweqweq'}
-    ],
-    detail: 'asdasdasdasdasdaaaaaaaaaaaaaaaaaaaasdasdasdasdasdaaaaaaaaaaaaaaaaaaaasdasdasdasdasdaaaaaaaaaaaaaaaaaaaasdasdasdasdasdaaaaaaaaaaaaaaaaaaaasdasdasdasdasdaaaaaaaaaaaaaaaaaaaasdasdasdasdasdaaaaaaaaaaaaaaaaaaaasdasdasdasdasdaaaaaaaaaaaaaaaaaaaasdasdasdasdasdaaaaaaaaaaaaaaaaaaaasdasdasdasdasdaaaaaaaaaaaaaaaaaaaasdasdasdasdasdaaaaaaaaaaaaaaaaaaaasdasdasdasdasdaaaaaaaaaaaaaaaaaaa'
+    
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var that = this;
-    wx.request({
-      url: 'http://ceceapi_dev.xxwolo.com/rp/pre/'+options.id,
-      header: {
-        'content-type': 'application/json' // 默认值
-      },
-      success : function(res){
-        wx.setNavigationBarTitle({
-          title: res.data.name,
-        })
-      }
+    wx.setNavigationBarTitle({
+      title: '登录',
     })
-    
-
-    console.log(options)
-
   },
 
   /**
@@ -80,5 +64,24 @@ Page({
    */
   onShareAppMessage: function () {
     
+  },
+
+  getUserInfo: function (e) {
+    console.log(e);
+    if (e.detail.errMsg == 'getUserInfo:ok') {
+      app.globalData.userInfo = e.detail.userInfo
+      app.globalData.hasUserInfo = true
+      app.globalData.userlogin = true
+      console.log('sss');
+      wx.switchTab({
+        url: '../home/home',
+      })
+      console.log('ddd');
+    } else {
+      app.globalData.userInfo = null
+      app.globalData.hasUserInfo = false
+      app.globalData.userlogin = false
+    }
+
   }
 })

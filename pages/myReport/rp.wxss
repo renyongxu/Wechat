@@ -1,0 +1,44 @@
+.rp_list{
+  display:flex;
+  flex-flow:row wrap;
+  align-items:center;
+  width:100%;
+  margin-top:100rpx;
+
+}
+.rp_item{
+  width:25%;
+  height:270rpx;
+  background:#cc0000;
+  margin:2rpx 33.9rpx 2rpx 30rpx;
+
+}
+.rp_lock{
+  width: 50%;
+  margin: 200rpx auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* background: #ccffff; */
+  text-align: center;
+
+}
+.img_icon{
+  width: 200rpx;
+  height: 200rpx;
+  margin: 2rpx auto;
+}
+.rp_text{
+  color: #e6e6e6;
+  text-align: center;
+  margin: 30rpx auto;
+
+}
+.rp_unlock{
+  background: #6600ff;
+  color: #fff;
+  padding: 20rpx 20rpx;
+  border-radius: 15rpx;
+  font-size: 30rpx;
+
+}

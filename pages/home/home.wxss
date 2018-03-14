@@ -19,13 +19,16 @@ page{
 }
 .list{
   width: 100%;
+  display: flex;
+  flex-direction: column;
 }
 .rp_item{
   width: 100%;
   margin-top: 5rpx;
   display: flex;
-  height: 100px;
+  flex-direction: row;
   background: #93c47d;
+
 }
 .item_icon{
   display: flex;
@@ -36,14 +39,16 @@ page{
   /* display: flex; */
   width: 75%;
   background: #c27ba0;
+  display: flex;
+  flex-direction: column;
 }
 .item_title{
-  display: inherit;
-  padding-left:20rpx;
+  position: relative;
+  padding:10rpx 0 0 20rpx;
 
 }
 .item_count{
-  display: inherit;
+  position: relative;
   padding-left:20rpx;
   font-size:20rpx;
   margin-top:20rpx;
@@ -51,12 +56,15 @@ page{
 
 }
 .item_read{
-  display: inherit;
+  position: relative;
+  display: flex;
   width: 25%;
-  margin: 38rpx 0 0 20rpx;
+  margin: 43rpx 0 15rpx 20rpx;
   font-size: 24rpx;
-  padding: 5rpx;
+  padding: 8rpx 0;
+  line-height: 24rpx; 
   border-radius: 30rpx;
   background: #f9f2f2;
   text-align: center;
+  justify-content: center;
 }

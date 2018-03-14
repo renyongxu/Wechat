@@ -1,0 +1,6 @@
+<view class='container'>
+  <view style='margin-top:500rpx;'>
+  <button open-type='getUserInfo' bindgetuserinfo='getUserInfo' type='primary'>授权登录</button>
+  </view>
+  
+</view>
