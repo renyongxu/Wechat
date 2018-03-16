@@ -5,8 +5,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    userInfo : {},
-    userlogin : false
+    userInfo: {},
+    userlogin: false
   },
 
   /**
@@ -19,70 +19,70 @@ Page({
     var url = currentPage.route;
     app.globalData.currentUrl = url;
 
-    that.drawCursor();
+    // that.drawCursor();
 
     console.log(url);
     wx.setNavigationBarTitle({
       title: '我的',
     })
-    
+
 
     that.setData({
-      userInfo : app.globalData.userInfo,
-      userlogin : app.globalData.isLogin
-      
+      userInfo: app.globalData.userInfo,
+      userlogin: app.globalData.isLogin
+
     })
-    
-    
+
+
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    
+
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    
+
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-    
+
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-    
+
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-    
+
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-    
+
   },
 
   /**
    * 用户点击右上角分享
    */
   onShareAppMessage: function (res) {
-    if(res.from == 'button'){
+    if (res.from == 'button') {
       // 来自页面内转发按钮
       console.log(res.target)
     }
@@ -99,71 +99,87 @@ Page({
     }
   },
 
-  getMyReport : function(event){
+  getMyReport: function (event) {
 
-    if (app.globalData.hasUserInfo){
+    if (app.globalData.hasUserInfo) {
       wx.navigateTo({
         url: '../myReport/rp',
       })
-    }else{
-      wx.showModal({
-        title: '提示',
-        content: '授权登录才能访问',
-        success : function(res){
-          if (res.confirm) {
-            wx.navigateTo({
-              url: '../login/login',
-            })
-          }
-        },
-        
-      })
+    } else {
+      this.goUserAuth();
     }
-    
+
   },
 
-  getPinTuan : function (event) {
+  getPinTuan: function (event) {
 
     wx.navigateTo({
       url: '../pin/pin',
     })
   },
 
-  getUserInfo : function(e){
+  getUserInfo: function (e) {
     console.log(e);
-    if (e.detail.errMsg == 'getUserInfo:ok'){
+    if (e.detail.errMsg == 'getUserInfo:ok') {
       app.globalData.userInfo = e.detail.userInfo
       this.setData({
         userInfo: e.detail.userInfo,
         userlogin: true
       })
-    }else{
+    } else {
       this.setData({
         userInfo: {},
         userlogin: false
       })
     }
-    
-  },
 
-  drawCursor: function () {
-    /* 定义变量 */
-    // 定义三角形顶点 TODO x
-    var center = { x: app.screenWidth / 2, y: 5 };
-    // 定义三角形边长
-    var length = 20;
-    // 左端点
-    var left = { x: center.x - length / 2, y: center.y + length / 2 * Math.sqrt(3) };
-    // 右端点
-    var right = { x: center.x + length / 2, y: center.y + length / 2 * Math.sqrt(3) };
-    // 初始化context
-    const context = wx.createCanvasContext('canvas-cursor');
-    context.moveTo(center.x, center.y);
-    context.lineTo(left.x, left.y);
-    context.lineTo(right.x, right.y);
-    // fill()填充而不是stroke()描边，于是省去手动回归原点，context.lineTo(center.x, center.y);
-    context.setFillStyle('#000');
-    context.fill();
-    context.draw();
+  },
+  goUserAuth: function () {
+    var that = this;
+    wx.showModal({
+      title: '提示',
+      content: '授权之后才能进行下一步操作',
+      success: function (res) {
+        if (res.confirm) {
+          wx.openSetting({
+            success: function (res) {
+              console.log(res);
+              var scope = res.authSetting['scope.userInfo'];
+
+              if (scope) {
+                console.log(1);
+                wx.getUserInfo({
+                  success: res => {
+                    // 可以将 res 发送给后台解码出 unionId
+                    console.log(2);
+                    that.setData({
+                      userInfo: res.userInfo,
+                      userlogin : true
+                    })
+                    app.globalData.userInfo = res.userInfo
+                    app.globalData.userlogin = true;
+                    app.globalData.hasUserInfo = true;
+                    // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
+                    // 所以此处加入 callback 以防止这种情况
+                    console.log(3);
+                    if (this.userInfoReadyCallback) {
+                      this.userInfoReadyCallback(res)
+                    }
+                  }
+
+                })
+
+              } else {
+                console.log('stop');
+              }
+            },
+            fail: function (res) {
+              console.log(res);
+            }
+          })
+        }
+      }
+    })
   }
+
 })

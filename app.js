@@ -1,7 +1,8 @@
 //app.js
+var md5 = require('/utils/md5.js')
 App({
   onLaunch: function () {
-
+    
     // 展示本地存储能力
     var logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
@@ -9,13 +10,16 @@ App({
 
     // 获取用户信息
     wx.getSetting({
-
+    
       success: res => {
         
-        if (res.authSetting['scope.userInfo']) {
+        console.log(res)
+        if (res.authSetting) {
           // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
           wx.getUserInfo({
+            
             success: res => {
+              
               // 可以将 res 发送给后台解码出 unionId
               this.globalData.userInfo = res.userInfo
               this.globalData.isLogin = true;
@@ -25,23 +29,8 @@ App({
               if (this.userInfoReadyCallback) {
                 this.userInfoReadyCallback(res)
               }
-            },
-            // fail : function(e){
-            //   wx.showModal({
-            //     title: '提示',
-            //     content: '您点击了拒绝授权,将无法显示用户头像与昵称',
-            //     success : function(res){
-            //       if(res.confirm){
-            //         wx.openSetting({
-            //           success: function (res) {
-            //             this.globalData.userInfo = res.userInfo
-            //             this.globalData.isLogin = false;
-            //           }
-            //         })
-            //       }
-            //     }
-            //   })
-            // }
+            }
+          
           })
         }
       },
@@ -49,6 +38,7 @@ App({
         console.log('cancle the res --'+res)
         this.globalData.isLogin = false;
         this.globalData.hasUserInfo = false;
+        
       }
 
     })
@@ -67,12 +57,23 @@ App({
             method : 'POST',
             data : {
               code : res.code,
-              appid : a.appid,
-              secret : a.secret
+              appid : this.globalData.appid,
+              secret: this.globalData.secret
             },
             success : function(res){
+              console.log(res);
+              if(res.statusCode == 200){
+                // that.globalData.openid = res.data.openid;
+                var userid = res.data.openid;
+                var sessionId = res.data.session_key;
+                var unionid = md5.hexMD5(userid+'!@#$'+sessionId);
+                console.log(unionid);
+                wx.setStorage({
+                  key: 'docId',
+                  data: unionid,
+                })
+              }
               
-              that.globalData.openid = res.data.openid;
               
             }
           })
@@ -80,7 +81,7 @@ App({
 
       }
     })
-    
+    console.log('84----'+this.globalData.openid)
   },
   
   globalData: {
@@ -91,6 +92,7 @@ App({
     isLogin : false,
     hasUserInfo : false,
     currentUrl : '',
-    hasDoc : false
+    hasDoc : false,
+    URL : 'http://ceceapi_dev.xxwolo.com'
   }
 })

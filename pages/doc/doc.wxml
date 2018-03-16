@@ -1,38 +1,68 @@
 <view class='container'>
   <view class='info'>完善个人资料报告会更准确</view>
-  <view class='doc_box'>
-     <view class='doc_name'>
-      <view class='v_name'>*姓名：</view>
-      <input class='ipt_name' type='text' placeholder='请填写个人姓名' confirm-type='done' placeholder-style="color:#e6e6e6;padding-left:20rpx;"></input>
-    </view>
-    
-    <view class='doc_gender'>
-       <view class='v_name'>*性别：</view> 
-      <picker class='pk_gender' bindchange="bindPickerChange" value="{{index}}" range="{{genders}}">
-        <view class="picker">
-          {{genders[index]}}
-        </view>
+  <!-- <form bindsubmit="formSubmit" bindreset="formReset"> -->
+    <view class='doc_box'>
+
+      <view class='doc_name'>
+        <view class='v_name'>*姓名：</view>
+        <input class='ipt_name' bindblur="checkName" name='username' type='text' placeholder='请填写个人姓名' confirm-type='done' placeholder-style="color:#e6e6e6;padding-left:20rpx;font-size:34rpx;"></input>
+      </view>
+
+      <view class='doc_gender'>
+        <view class='v_name'>*性别：</view>
+        <picker class='pk_gender' name='gender' bindchange="bindGenderPickerChange" value="{{index}}" range="{{genders}}">
+          <view class="picker">
+          <block wx:if="{{ userGender == '' || userGender == undefined }}">男/女</block>
+          <block wx:else>{{genders[index]}}</block>  
+          </view>
+        </picker>
         <image src='../../images/right.png' class='img' mode='aspectFit'></image>
-        
-      </picker>
+      </view>
+
+      <view class='doc_gender'>
+        <view class='v_name'>*出生时间：</view>
+        <picker class='pk_gender' mode="time" value="{{time}}" start="00:00" end="23:59" bindchange="bindTimeChange">
+          <view class="picker">
+            {{time}}
+          </view>
+        </picker>
+        <image src='../../images/right.png' class='img' mode='aspectFit'></image>
+      </view>
+
+      <view class='doc_gender'>
+        <view class='v_name'>*出生日期：</view>
+        <picker class='pk_gender' mode="date" value="{{date}}" start="1970-01-01" end="2100-01-01" bindchange="bindDateChange">
+          <view class="picker">
+            {{date}}
+          </view>
+        </picker>
+        <image src='../../images/right.png' class='img' mode='aspectFit'></image>
+      </view>
+      <view class='doc_gender'>
+        <view class='v_name'>*出生地：</view>
+        <picker class='pk_city' mode="region" bindchange="bindPickerProvinceChange" value="{{region}}" range="{{customItem}}">
+          <view class="picker">          
+            <block wx:if="{{ birthPlace == ''}}">北京</block>
+            <block wx:else>{{birthPlace}}</block>
+          </view>
+        </picker>
+        <image src='../../images/right.png' class='img' mode='aspectFit'></image>
+      </view>
       
+      <view class='doc_gender'>
+        <view class='v_name'>*现居地：</view>
+        <picker class='pk_city' mode="region" bindchange="bindPickerLiveProvinceChange" value="{{region1}}" range="{{customItem1}}">
+          <view class="picker">
+            
+            <block wx:if="{{ livePlace == '' }}">北京</block>
+            <block wx:else>{{livePlace}}</block>
+          </view>
+        </picker>
+      
+        <image src='../../images/right.png' class='img' mode='aspectFit'></image>
+      </view>
     </view>
-    <!--
-    <view class='doc_gender'>
-       <view class='v_name'>*出生时间：</view> 
-      <picker class='pk_gender' mode="time" value="{{time}}" start="00:00" end="23:59" bindchange="bindTimeChange">
-        <view class="picker">
-          {{time}}
-        </view>
-      </picker>
-    </view>
-    <view class='doc_gender'>
-       <view class='v_name'>*出生日期：</view> 
-     <picker class='pk_gender' mode="date" value="{{date}}" start="2015-09-01" end="2017-09-01" bindchange="bindDateChange">
-        <view class="picker">
-          {{date}}
-        </view>
-      </picker>
-    </view> -->
-  </view>
+    <!-- <button formType="submit">submit</button> -->
+  <!-- </form> -->
+    <view class='doc_save' bindtap='saveProfile'>完成</view>
 </view>
